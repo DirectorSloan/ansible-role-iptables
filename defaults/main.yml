@@ -1,6 +1,7 @@
 ---
 
 iptables_public_interface: eth0
+iptables_template: 'iptables.j2'
 
 iptables_tcp_rules:
   - destinationport: 22

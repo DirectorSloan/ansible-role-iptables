@@ -27,7 +27,7 @@ Table of Contents
 Description
 -----------
 
-This role will remove firewalld and install iptables and ensure it is enabled and started. The configuration is based on a restrictive firewall design which blocks most traffic by default. Be carefull when using it the first time!
+This role will remove firewalld and install iptables and ensure it is enabled and started. The configuration is based on a restrictive firewall design which blocks most traffic by default. Be carefull when using it the first time! With the default Jinja2 Template only the Chains INPUT FORWARD and OUTPUT are used in the filter table. If the docker boolean may be used there will be also a DOCKER Chain in the tables filter and nat.
 
 Requirements
 ------------
@@ -43,6 +43,7 @@ Variables with defaults:
 
 ```yml
 iptables_public_interface: eth0
+iptables_template: 'iptables.j2'
 iptables_tcp_rules:
   - destinationport: 22
     sourceaddress: '0.0.0.0/0'

@@ -25,7 +25,7 @@
 
 - name: deploying host dependend rules
   template:
-    src: iptables.j2
+    src: '{{ iptables_template }}'
     dest: /etc/sysconfig/iptables
   register: iptablesdeploy
   when: ansible_os_family == "RedHat"
