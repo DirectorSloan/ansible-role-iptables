@@ -58,7 +58,7 @@ COMMIT
  {%- endfor %}
 {%- endif %}
 {% if iptables_udp_rules is defined -%}
- {%- for item in ansible_host_iptables_udp_rules %}
+ {%- for item in iptables_udp_rules %}
 -A UDP -p udp -m udp -i {{ iptables_public_interface }} -s {{ item.sourceaddress }} --dport {{ item.destinationport }} -m comment --comment "{{ item.comment }}" -j ACCEPT{{ "\n" }}
  {%- endfor %}
 {%- endif %}
