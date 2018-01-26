@@ -1,0 +1,15 @@
+---
+
+iptables_public_interface: eth0
+
+iptables_tcp_rules:
+  - destinationport: 22
+    sourceaddress: '0.0.0.0/0'
+    comment: 'SSH from everywhere'
+
+iptables_udp_rules:
+  - destinationport: 123
+    sourceaddress: '0.0.0.0/0'
+    comment: 'NTP from everywhere'
+
+...

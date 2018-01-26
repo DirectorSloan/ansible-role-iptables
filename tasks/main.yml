@@ -1,0 +1,40 @@
+---
+
+- name: iptables install
+  yum:
+    pkg: iptables
+  when: ansible_os_family == "RedHat"
+
+- name: iptables install
+  yum:
+    pkg: iptables-services
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+
+- name: removing firewalld
+  yum: pkg={{ item }} state=absent
+  with_items:
+    - firewalld
+    - firewalld-filesystem
+    - python-firewall
+  when: ansible_os_family == "RedHat"
+
+- name: enable iptables
+  service:
+    name: iptables
+    enabled: yes
+
+- name: deploying host dependend rules
+  template:
+    src: iptables.j2
+    dest: /etc/sysconfig/iptables
+  register: iptablesdeploy
+  when: ansible_os_family == "RedHat"
+
+- name: restart iptables
+  service:
+    name: iptables
+    state: restarted
+  when: iptablesdeploy.changed
+
+...
+

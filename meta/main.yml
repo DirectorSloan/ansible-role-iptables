@@ -1,0 +1,23 @@
+---
+
+galaxy_info:
+
+  author: Ben Langenberg
+  description: 'removes firewalld and install iptables and configure it'
+  company: Helmholtz-Centre for Environmental Research GmbH - UFZ
+  license: MIT
+  min_ansible_version: 2.0
+
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+
+  galaxy_tags:
+    - firewall
+    - iptables
+    - network
+    - security
+
+...
