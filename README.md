@@ -60,6 +60,7 @@ These are empty by default, you can set a allow all interconnect interface based
 
 ```yml
 iptables_interconnect_interface: 'eth1'
+iptables_interconnect_range: '10.10.10.0/24'
 host_use_docker: 'true'
 ```
 

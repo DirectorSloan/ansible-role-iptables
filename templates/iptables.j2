@@ -36,8 +36,8 @@ COMMIT
 :UDP - [0:0]
 :dynamic - [0:0]
 {% if iptables_interconnect_interface is defined -%}
--A INPUT -p tcp -m tcp -s 10.10.20.0/24 -i {{ iptables_interconnect_interface }} -j ACCEPT -m comment --comment "interconnect all Allow"
--A INPUT -p udp -m udp -s 10.10.20.0/24 -i {{ iptables_interconnect_interface }} -j ACCEPT -m comment --comment "interconnect all Allow"{{ "\n" }}
+-A INPUT -p tcp -m tcp -s {{ iptables_interconnect_range }} -i {{ iptables_interconnect_interface }} -j ACCEPT -m comment --comment "interconnect all Allow"
+-A INPUT -p udp -m udp -s {{ iptables_interconnect_range }} -i {{ iptables_interconnect_interface }} -j ACCEPT -m comment --comment "interconnect all Allow"{{ "\n" }}
 {%- endif %}
 -A INPUT -m comment --comment "INVALID goes to dynamic" -j dynamic
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -m comment --comment "accept all of established connections and related" -j ACCEPT
