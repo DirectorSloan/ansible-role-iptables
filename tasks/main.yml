@@ -11,11 +11,12 @@
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 - name: removing firewalld
-  yum: pkg={{ item }} state=absent
-  with_items:
-    - firewalld
-    - firewalld-filesystem
-    - python-firewall
+  yum:
+    pkg:
+      - firewalld
+      - firewalld-filesystem
+      - python-firewall
+    state: absent
   when: ansible_os_family == "RedHat"
 
 - name: enable iptables
