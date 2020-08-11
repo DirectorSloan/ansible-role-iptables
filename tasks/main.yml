@@ -28,14 +28,7 @@
   template:
     src: '{{ iptables_template }}'
     dest: /etc/sysconfig/iptables
-  register: iptablesdeploy
+  notify: reload iptables
   when: ansible_os_family == "RedHat"
 
-- name: restart iptables
-  service:
-    name: iptables
-    state: restarted
-  when: iptablesdeploy.changed
-
 ...
-
